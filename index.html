@@ -1,6 +1,8 @@
-<html>
+<html lang="en">
 <head>
-<title> This is a test message </title>
+<title>This is a test message</title>
+
+<!-- Google Analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -12,7 +14,178 @@
   ga('send', 'pageview');
 
 </script>
+
+
+<style type="text/css" media="screen">
+.container { position: relative; width: 1000px; margin: 0 auto; }
+
+/*  Recent showcase tease
+-------------------------------------------------------------- */
+#recent-showcases-container {
+  background-color: #16151a;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  margin-top: 80px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+#recent-showcases-container h2 {
+  padding-left: 15px;
+  color: #febf4b;
+}
+
+ul#recent-showcases{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 1050px; /* Extra width so last image doesn't bounce to second line mid-animation */
+}
+
+ul#recent-showcases li {
+  float: left;
+  padding: 0;
+  display: block;
+  margin-right: 0;
+}
+
+ul#recent-showcases li a {
+  display: block;
+  overflow: hidden;
+  height: 250px;
+  width: 123px;
+  border: 1px solid #16151A;
+  border-width: 0 1px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+ul#recent-showcases li a.first {
+  width: 124px;
+  border-left-width: 0;
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+}
+
+ul#recent-showcases li a.last {
+  width: 124px;
+  border-right-width: 0;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+}
+
+ul#recent-showcases li p {
+  display: none;
+}
+
+/*  Showcase nav
+-------------------------------------------------------------- */
+
+
+.showcase-nav:hover {
+  opacity: 1;
+}
+
+.showcase-nav:hover p {
+  display: block;
+}
+
+.showcase-nav:hover p a {
+  display: block;
+  height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.showcase-nav:hover p a:hover {
+  color: #febf4b;
+}
+
+</style>
+
+<script type="text/javascript" src="jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="jquery-ui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="pictory.js" charset="utf-8"></script>
+
+
+  <script type="text/javascript">
+  $(window).mousemove(function() { 
+    if (!($(".showcase-nav").hasClass('visible'))) { 
+      $(".showcase-nav").clearQueue().stop().animate({opacity: 1}, 500, function(){ $(this).addClass('visible') }).delay(2000).animate({opacity: 0}, 500, function(){ $(this).removeClass('visible') });
+    }; 
+  });
+  $(window).scroll(function() { 
+    if (!($(".showcase-nav").hasClass('visible'))) { 
+      $(".showcase-nav").clearQueue().stop().animate({opacity: 1}, 500, function(){ $(this).addClass('visible') }).delay(2000).animate({opacity: 0}, 500, function(){ $(this).removeClass('visible') });
+    }; 
+  });
+  $(".showcase-nav").mouseover(function() { 
+    $(this).clearQueue().stop().addClass('visible'); 
+  });
+  $(".showcase-nav").mouseout(function() { 
+    $(this).clearQueue().stop().removeClass('visible'); 
+  });
+  </script>
+
+
 </head>
-<body>
-muuuuha haha ha ha ha
+<body class="">
+
+<div class="container" id="recent-showcases-container">
+  <h2>Recent showcases: See the world through the eyes of Pictory contributors.</h2>
+  <ul id="recent-showcases">
+    
+      <li>
+        <a alt="Phoot Camp 2012 Roster <span class='tease'>33 super creative self portraits submitted to Pictory&#39;s annual creative retreat for photographers.</span> <span class='credit'>(Sample photo by Steph Goralnick)</span>" href="/showcases/phoot-camp-2012-roster/" class="first"  style="background-image: url('http://static.pictorymag.com/pictories/5808311742_d72c989582_b_jpeg_500x250_crop_q85.jpg');">
+          <p>Phoot Camp 2012 Roster</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="Close Encounters of the Phoot Kind <span class='tease'>The Story of Phoot Camp 2011: Close Encounters of the Phoot Kind.</span> <span class='credit'>(Sample photo by Ryan Schude)</span>" href="/showcases/close-encounters-phoot-kind/"   style="background-image: url('http://static.pictorymag.com/pictories/5891795687_a874a1e173_b_jpeg_500x250_crop_q85.jpg');">
+          <p>Close Encounters of the Phoot Kind</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="Portrait of a Place: Paris <span class='tease'>Longing for the City of Light.</span> <span class='credit'>(Sample photo by Sofia Verzbolovskis)</span>" href="/showcases/portrait-place-paris/"   style="background-image: url('http://static.pictorymag.com/pictories/cover_paris_ed_jpg_500x250_crop_q85.jpg');">
+          <p>Portrait of a Place: Paris</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="Something to Write Home About <span class='tease'>Seventeen visual accounts of unexpected delight.</span> <span class='credit'>(Sample photo by Linka Odom)</span>" href="/showcases/something-write-home-about/"   style="background-image: url('http://static.pictorymag.com/pictories/LinkaAOdom_Bolivia-21__jpeg_500x250_crop_q85.jpg');">
+          <p>Something to Write Home About</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="The Best of Small Town America <span class='tease'>Sixteen of the finest tiny towns in the United States.</span> <span class='credit'>(Sample photo by James Besser)</span>" href="/showcases/best-small-town-america/"   style="background-image: url('http://static.pictorymag.com/pictories/4659075496_69e822e095_b_ed_jpg_500x250_crop_q85.jpg');">
+          <p>The Best of Small Town America</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="Beautiful People <span class='tease'>What is it like, day-to-day, to be remarkably attractive?</span> <span class='credit'>(Sample photo by Tyler Sharp)</span>" href="/showcases/beautiful-people/"   style="background-image: url('http://static.pictorymag.com/showcases/titles/model_crop_jpg_500x250_crop_q85.jpg');">
+          <p>Beautiful People</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="Love without Language <span class='tease'>Sweet stories of what we&#39;ve learned from our animal friends.</span> <span class='credit'>(Sample photo by Adilah I.)</span>" href="/showcases/love-without-language/"   style="background-image: url('http://static.pictorymag.com/pictories/Trust_jpg_500x250_crop_q85.jpg');">
+          <p>Love without Language</p>
+        </a>
+      </li>
+    
+      <li>
+        <a alt="Eat at Your Own Risk <span class='tease'>Brace yourself for this crazy culinary ride.</span> <span class='credit'>(Sample photo by Victor Sutan)</span>" href="/showcases/eat-your-own-risk/"  class="last" style="background-image: url('http://static.pictorymag.com/pictories/pIMG_7069_jpg_500x250_crop_q85.jpg');">
+          <p>Eat at Your Own Risk</p>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+</body>
 </html>
