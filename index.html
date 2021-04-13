@@ -3,17 +3,16 @@
 <title>This is a test message</title>
 
 <!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2332506-2"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-2332506-2', 'auto');
-  ga('require', 'linkid', 'linkid.js');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-2332506-2');
 </script>
+
 
 
 <style type="text/css" media="screen">
@@ -110,21 +109,21 @@ ul#recent-showcases li p {
 
 
   <script type="text/javascript">
-  $(window).mousemove(function() { 
-    if (!($(".showcase-nav").hasClass('visible'))) { 
+  $(window).mousemove(function() {
+    if (!($(".showcase-nav").hasClass('visible'))) {
       $(".showcase-nav").clearQueue().stop().animate({opacity: 1}, 500, function(){ $(this).addClass('visible') }).delay(2000).animate({opacity: 0}, 500, function(){ $(this).removeClass('visible') });
-    }; 
+    };
   });
-  $(window).scroll(function() { 
-    if (!($(".showcase-nav").hasClass('visible'))) { 
+  $(window).scroll(function() {
+    if (!($(".showcase-nav").hasClass('visible'))) {
       $(".showcase-nav").clearQueue().stop().animate({opacity: 1}, 500, function(){ $(this).addClass('visible') }).delay(2000).animate({opacity: 0}, 500, function(){ $(this).removeClass('visible') });
-    }; 
+    };
   });
-  $(".showcase-nav").mouseover(function() { 
-    $(this).clearQueue().stop().addClass('visible'); 
+  $(".showcase-nav").mouseover(function() {
+    $(this).clearQueue().stop().addClass('visible');
   });
-  $(".showcase-nav").mouseout(function() { 
-    $(this).clearQueue().stop().removeClass('visible'); 
+  $(".showcase-nav").mouseout(function() {
+    $(this).clearQueue().stop().removeClass('visible');
   });
   </script>
 
@@ -135,55 +134,55 @@ ul#recent-showcases li p {
 <div class="container" id="recent-showcases-container">
   <h2>Recent showcases: See the world through the eyes of Pictory contributors.</h2>
   <ul id="recent-showcases">
-    
+
       <li>
         <a alt="Phoot Camp 2012 Roster <span class='tease'>33 super creative self portraits submitted to Pictory&#39;s annual creative retreat for photographers.</span> <span class='credit'>(Sample photo by Steph Goralnick)</span>" href="http://blog.kkartikeya.com/2016/10/02/yosemite-2016/" class="first"  style="background-image: url('http://static.pictorymag.com/pictories/5808311742_d72c989582_b_jpeg_500x250_crop_q85.jpg');">
           <p>Phoot Camp 2012 Roster</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="Close Encounters of the Phoot Kind <span class='tease'>The Story of Phoot Camp 2011: Close Encounters of the Phoot Kind.</span> <span class='credit'>(Sample photo by Ryan Schude)</span>" href="http://blog.kkartikeya.com/2016/05/17/zion-national-park/"   style="background-image: url('http://static.pictorymag.com/pictories/5891795687_a874a1e173_b_jpeg_500x250_crop_q85.jpg');">
           <p>Close Encounters of the Phoot Kind</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="Portrait of a Place: Paris <span class='tease'>Longing for the City of Light.</span> <span class='credit'>(Sample photo by Sofia Verzbolovskis)</span>" href="/showcases/portrait-place-paris/"   style="background-image: url('http://static.pictorymag.com/pictories/cover_paris_ed_jpg_500x250_crop_q85.jpg');">
           <p>Portrait of a Place: Paris</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="Something to Write Home About <span class='tease'>Seventeen visual accounts of unexpected delight.</span> <span class='credit'>(Sample photo by Linka Odom)</span>" href="/showcases/something-write-home-about/"   style="background-image: url('http://static.pictorymag.com/pictories/LinkaAOdom_Bolivia-21__jpeg_500x250_crop_q85.jpg');">
           <p>Something to Write Home About</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="The Best of Small Town America <span class='tease'>Sixteen of the finest tiny towns in the United States.</span> <span class='credit'>(Sample photo by James Besser)</span>" href="/showcases/best-small-town-america/"   style="background-image: url('http://static.pictorymag.com/pictories/4659075496_69e822e095_b_ed_jpg_500x250_crop_q85.jpg');">
           <p>The Best of Small Town America</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="Beautiful People <span class='tease'>What is it like, day-to-day, to be remarkably attractive?</span> <span class='credit'>(Sample photo by Tyler Sharp)</span>" href="/showcases/beautiful-people/"   style="background-image: url('http://static.pictorymag.com/showcases/titles/model_crop_jpg_500x250_crop_q85.jpg');">
           <p>Beautiful People</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="Love without Language <span class='tease'>Sweet stories of what we&#39;ve learned from our animal friends.</span> <span class='credit'>(Sample photo by Adilah I.)</span>" href="/showcases/love-without-language/"   style="background-image: url('http://static.pictorymag.com/pictories/Trust_jpg_500x250_crop_q85.jpg');">
           <p>Love without Language</p>
         </a>
       </li>
-    
+
       <li>
         <a alt="Eat at Your Own Risk <span class='tease'>Brace yourself for this crazy culinary ride.</span> <span class='credit'>(Sample photo by Victor Sutan)</span>" href="/showcases/eat-your-own-risk/"  class="last" style="background-image: url('http://static.pictorymag.com/pictories/pIMG_7069_jpg_500x250_crop_q85.jpg');">
           <p>Eat at Your Own Risk</p>
         </a>
       </li>
-    
+
   </ul>
 </div>
 
