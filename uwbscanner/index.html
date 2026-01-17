@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UWB Scanner - Ultra-Wideband Device Tracker for Android</title>
+    <meta name="description" content="Precision UWB ranging app for Android. Track FiRa-compliant UWB tags with centimeter-level accuracy. Radar view, proximity alerts, session recording, and more.">
+    <meta name="keywords" content="UWB, Ultra-Wideband, Android, Pixel, Samsung, tracker, ranging, FiRa, location">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="UWB Scanner - Ultra-Wideband Device Tracker">
+    <meta property="og:description" content="Precision UWB ranging app for Android with radar view, proximity alerts, and session recording.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <style>
+        :root {
+            --primary: #6366F1;
+            --primary-dark: #4F46E5;
+            --secondary: #8B5CF6;
+            --tertiary: #14B8A6;
+            --background: #0F172A;
+            --surface: #1E293B;
+            --text: #F1F5F9;
+            --text-muted: #94A3B8;
+            --success: #22C55E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        /* Screenshot Section */
+        .screenshots {
+            padding: 80px 0;
+        }
+
+        .screenshots h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .screenshot-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .screenshot-card h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .screenshot-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--background);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+        }
+
+        .feature-card.premium {
+            border-color: var(--secondary);
+            position: relative;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+        }
+
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-card li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .pricing-card li.disabled {
+            color: var(--text-muted);
+        }
+
+        .pricing-card li.disabled::before {
+            content: '✗';
+            color: var(--text-muted);
+        }
+
+        /* Compatibility Section */
+        .compatibility {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .compatibility h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .compatibility .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .device-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .device-badge {
+            background: var(--background);
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="images/icon.png" alt="UWB Scanner">
+                UWB Scanner
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#compatibility">Devices</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>UWB Scanner</h1>
+                <p class="subtitle">
+                    Precision Ultra-Wideband ranging for Android. Track FiRa-compliant UWB tags with centimeter-level accuracy using your phone's built-in UWB hardware.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.kkartikeya.uwbscanner" class="btn btn-primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.5 12.92 20.16 13.19L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/>
+                        </svg>
+                        Get on Google Play
+                    </a>
+                    <a href="#features" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="screenshots">
+            <div class="container">
+                <h2>See It In Action</h2>
+                <div class="screenshot-grid">
+                    <div class="screenshot-card">
+                        <img src="images/screenshot-radar.png" alt="Radar View">
+                        <h3>Radar View</h3>
+                        <p>Real-time visual radar showing device positions and distances</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="images/screenshot-devices.png" alt="Device Management">
+                        <h3>Device Management</h3>
+                        <p>Track and manage multiple UWB devices simultaneously</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="images/screenshot-history.png" alt="Session History">
+                        <h3>Session History</h3>
+                        <p>Record sessions and view distance charts over time</p>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="images/screenshot-alerts.png" alt="Proximity Alerts">
+                        <h3>Proximity Alerts</h3>
+                        <p>Set geofencing zones with customizable notifications</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Powerful Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📡</div>
+                        <h3>Real-time Radar</h3>
+                        <p>Visualize device positions on an interactive radar display with distance and angle information updated in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>Configurable Parameters</h3>
+                        <p>Full control over UWB session settings including channel, preamble, STS configuration, and ranging intervals.</p>
+                    </div>
+                    <div class="feature-card premium">
+                        <span class="premium-badge">PRO</span>
+                        <div class="feature-icon">📊</div>
+                        <h3>Session Recording</h3>
+                        <p>Record ranging sessions and export data to CSV for analysis. View distance measurements with interactive charts.</p>
+                    </div>
+                    <div class="feature-card premium">
+                        <span class="premium-badge">PRO</span>
+                        <div class="feature-icon">🔔</div>
+                        <h3>Proximity Alerts</h3>
+                        <p>Set up geofencing zones and receive notifications when devices enter or leave specified distance thresholds.</p>
+                    </div>
+                    <div class="feature-card premium">
+                        <span class="premium-badge">PRO</span>
+                        <div class="feature-icon">📱</div>
+                        <h3>Multi-Device Ranging</h3>
+                        <p>Track unlimited devices simultaneously with multicast support. Perfect for asset tracking scenarios.</p>
+                    </div>
+                    <div class="feature-card premium">
+                        <span class="premium-badge">PRO</span>
+                        <div class="feature-icon">🔄</div>
+                        <h3>Background Ranging</h3>
+                        <p>Continue ranging while using other apps. Get proximity alerts even when the app is in the background.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2>Simple Pricing</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>Free</h3>
+                        <div class="price">$0</div>
+                        <ul>
+                            <li>Real-time radar view</li>
+                            <li>Basic device tracking (2 devices)</li>
+                            <li>Full configuration options</li>
+                            <li>UWB capabilities display</li>
+                            <li class="disabled">Session recording</li>
+                            <li class="disabled">Proximity alerts</li>
+                            <li class="disabled">Background ranging</li>
+                        </ul>
+                        <a href="https://play.google.com/store/apps/details?id=com.kkartikeya.uwbscanner" class="btn btn-secondary" style="width: 100%;">Download Free</a>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Pro</h3>
+                        <div class="price">$3.99 <span>one-time</span></div>
+                        <ul>
+                            <li>Everything in Free</li>
+                            <li>Unlimited device tracking</li>
+                            <li>Session recording & CSV export</li>
+                            <li>Distance history charts</li>
+                            <li>Proximity alerts & geofencing</li>
+                            <li>Background ranging</li>
+                            <li>3D position visualization</li>
+                            <li>BLE device discovery</li>
+                        </ul>
+                        <a href="https://play.google.com/store/apps/details?id=com.kkartikeya.uwbscanner" class="btn btn-primary" style="width: 100%;">Get Pro</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compatibility Section -->
+        <section id="compatibility" class="compatibility">
+            <div class="container">
+                <h2>Compatible Devices</h2>
+                <p class="subtitle">Works with all Android devices that have UWB hardware</p>
+                <div class="device-list">
+                    <span class="device-badge">Google Pixel 8 Pro</span>
+                    <span class="device-badge">Google Pixel 8</span>
+                    <span class="device-badge">Google Pixel 9</span>
+                    <span class="device-badge">Google Pixel 9 Pro</span>
+                    <span class="device-badge">Samsung Galaxy S24 Ultra</span>
+                    <span class="device-badge">Samsung Galaxy S23 Ultra</span>
+                    <span class="device-badge">Samsung Galaxy Z Fold 5</span>
+                    <span class="device-badge">Motorola Edge 50 Ultra</span>
+                    <span class="device-badge">Xiaomi 15S Pro</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="support">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>UWB Scanner</h4>
+                    <p style="color: var(--text-muted);">Precision Ultra-Wideband ranging for Android devices.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.kkartikeya.uwbscanner">Google Play Store</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:uwbscanner@kkartikeya.com">uwbscanner@kkartikeya.com</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="https://github.com/kkartikeya/uwbscanner/issues">Report a Bug</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Developer</h4>
+                    <ul>
+                        <li><a href="https://github.com/kkartikeya">GitHub</a></li>
+                        <li><a href="https://twitter.com/kkartikeya">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 UWB Scanner. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
